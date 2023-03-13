@@ -1,0 +1,14 @@
+<%# afficher une nouvelle grille aléatoire %>
+<h1>New game</h1>
+<% @letters.each do |letter| %>
+    <%= letter %>
+<% end %>
+
+<form action="/score" method="post" data-turbo="false">
+  <label>What is the longest word you can find?</label>
+  <input name="guess" type="text" value="<%= params[:guess] %>">
+  <input type="submit" value="Play">
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag "letters", @letters %>
+</form>
